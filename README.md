@@ -1,6 +1,6 @@
 # init.lua 
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![License: Apache](https://img.shields.io/badge/licence-apache-blue.svg)](LICENSE.md)
 
 ## Description
 This repository contains my personal `init.lua` configurations, 
