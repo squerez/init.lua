@@ -46,7 +46,7 @@ This project is licensed under the MIT License.
 See the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
-- [theprimeagen](https://github.com/ThePrimeagen/init.lua) - Inspiration for the `init.lua` configurations
-- [Author Name](https://github.com/squerez) - Repository owner and maintainer
+- [ThePrimeagen](https://github.com/ThePrimeagen/init.lua) - Inspiration for the `init.lua` configurations
+- [ThePrimeagen](https://github.com/squerez) - Repository owner and maintainer
 
 
