@@ -47,6 +47,3 @@ See the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
 - [ThePrimeagen](https://github.com/ThePrimeagen/init.lua) - Inspiration for the `init.lua` configurations
-- [ThePrimeagen](https://github.com/squerez) - Repository owner and maintainer
-
-
