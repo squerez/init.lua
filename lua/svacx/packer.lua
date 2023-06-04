@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
   use('lukas-reineke/indent-blankline.nvim')
   use("folke/twilight.nvim")
   use("laytan/cloak.nvim")
+  use("github/copilot.vim")
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
