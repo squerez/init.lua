@@ -26,9 +26,12 @@ case, my neovim experience.
 git clone https://github.com/squerez/init.lua
 ```
 
-2. Copy the `init.lua` file to the appropriate directory:
+2. Copy the `init.lua` file to the appropriate directory (only neovim supported):
 
-- For Neovim: `~/.config/nvim/init.lua`
+```
+cd init.lua
+cp ./ ~/.config/nvim
+```
 
 ## Usage
 Modify the `init.lua` file according to your preferences. 
@@ -46,7 +49,4 @@ This project is licensed under the MIT License.
 See the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
-- [theprimeagen](https://github.com/ThePrimeagen/init.lua) - Inspiration for the `init.lua` configurations
-- [Author Name](https://github.com/squerez) - Repository owner and maintainer
-
-
+- [ThePrimeagen](https://github.com/ThePrimeagen/init.lua) - Inspiration for the `init.lua` configurations
