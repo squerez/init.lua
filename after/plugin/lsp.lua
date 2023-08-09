@@ -6,7 +6,7 @@ lsp.ensure_installed({
   'tsserver',
   'eslint',
   'rust_analyzer',
-  'pyright',
+  'pylyzer',
   'gopls',
   'jsonls',
   'yamlls',
