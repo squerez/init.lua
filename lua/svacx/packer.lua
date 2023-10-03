@@ -32,6 +32,12 @@ return require('packer').startup(function(use)
   use("folke/twilight.nvim")
   use("laytan/cloak.nvim")
   use("github/copilot.vim")
+  use("mfussenegger/nvim-dap")
+  use("mfussenegger/nvim-dap-python")
+  use("theHamsta/nvim-dap-virtual-text")
+  use("rcarriga/nvim-dap-ui")
+  use("nvim-telescope/telescope-dap.nvim")
+  use("raghur/vim-ghost")
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',

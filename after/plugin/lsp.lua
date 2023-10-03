@@ -6,7 +6,7 @@ lsp.ensure_installed({
   'tsserver',
   'eslint',
   'rust_analyzer',
-  'pylyzer',
+  'pyright',
   'gopls',
   'jsonls',
   'yamlls',
@@ -64,3 +64,15 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
+require('lspconfig').pyright.setup {
+  settings = {
+    python =  {
+      analysis = {
+        autoSearchPaths = false,
+        useLibraryCodeForTypes = false,
+        diagnosticMode = 'openFilesOnly',
+      }
+    }
+  }
+}
