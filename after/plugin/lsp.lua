@@ -64,3 +64,15 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
+require('lspconfig').pyright.setup {
+  settings = {
+    python =  {
+      analysis = {
+        autoSearchPaths = false,
+        useLibraryCodeForTypes = false,
+        diagnosticMode = 'openFilesOnly',
+      }
+    }
+  }
+}

@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -11,10 +10,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -35,6 +32,11 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("v", "Q", ":norm @q<cr>")
 
+vim.keymap.set("n", "<F4>", "<Esc>:!python3 %<CR>")
 
-vim.keymap.set("n", "<F4>", "<Esc>:w<cr>:!clear;python3 %<cr>")
-
+vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+vim.keymap.set('n', '<F6>', function() require('dap').step_into() end)
+vim.keymap.set('n', '<F7>', function() require('dap').step_over() end)
+vim.keymap.set('n', '<F8>', function() require('dap').step_out() end)
+vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
