@@ -8,8 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                            , branch = '0.1.x',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.5',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -23,7 +22,7 @@ return require('packer').startup(function(use)
   })
 
   use('nvim-treesitter/nvim-treesitter', {run=':TSUpdate'})
-  use('theprimeagen/harpoon')
+  use("nvim-lua/plenary.nvim")
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('tpope/vim-commentary')
@@ -72,6 +71,12 @@ return require('packer').startup(function(use)
       config = function()
         require("telescope").load_extension("yaml_schema")
       end,
+  }
+
+  use {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      requires = { {"nvim-lua/plenary.nvim"} }
   }
 
 end)
