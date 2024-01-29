@@ -8,9 +8,16 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.5',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+	  'nvim-telescope/telescope.nvim',
+      tag = '0.1.5',
+	    requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
+  }
+
 
   use({
 	  'rose-pine/neovim',
@@ -37,6 +44,7 @@ return require('packer').startup(function(use)
   use("rcarriga/nvim-dap-ui")
   use("nvim-telescope/telescope-dap.nvim")
   use("raghur/vim-ghost")
+  use("nvim-tree/nvim-web-devicons")
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
