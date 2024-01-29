@@ -8,10 +8,16 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                            , branch = '0.1.x',
+	  'nvim-telescope/telescope.nvim',
+      tag = '0.1.5',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
+  }
+
 
   use({
 	  'rose-pine/neovim',
@@ -23,7 +29,7 @@ return require('packer').startup(function(use)
   })
 
   use('nvim-treesitter/nvim-treesitter', {run=':TSUpdate'})
-  use('theprimeagen/harpoon')
+  use("nvim-lua/plenary.nvim")
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('tpope/vim-commentary')
@@ -38,6 +44,7 @@ return require('packer').startup(function(use)
   use("rcarriga/nvim-dap-ui")
   use("nvim-telescope/telescope-dap.nvim")
   use("raghur/vim-ghost")
+  use("nvim-tree/nvim-web-devicons")
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
@@ -72,6 +79,12 @@ return require('packer').startup(function(use)
       config = function()
         require("telescope").load_extension("yaml_schema")
       end,
+  }
+
+  use {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      requires = { {"nvim-lua/plenary.nvim"} }
   }
 
 end)
