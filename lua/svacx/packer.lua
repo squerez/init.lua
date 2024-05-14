@@ -8,16 +8,15 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim',
+      'nvim-telescope/telescope.nvim',
       tag = '0.1.5',
-	    requires = { {'nvim-lua/plenary.nvim'} }
+      requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   use {
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
   }
-
 
   use({
 	  'rose-pine/neovim',
@@ -34,20 +33,26 @@ return require('packer').startup(function(use)
   use('tpope/vim-fugitive')
   use('tpope/vim-commentary')
   use('tpope/vim-sensible')
+  use('tpope/vim-dadbod')
+  use('kristijanhusak/vim-dadbod-completion')
   use('lukas-reineke/indent-blankline.nvim')
   use("folke/twilight.nvim")
   use("laytan/cloak.nvim")
   use("github/copilot.vim")
+  use("nvim-telescope/telescope-dap.nvim")
+  use("nvim-tree/nvim-web-devicons")
   use("mfussenegger/nvim-dap")
   use("mfussenegger/nvim-dap-python")
   use("theHamsta/nvim-dap-virtual-text")
-  use("rcarriga/nvim-dap-ui")
-  use("nvim-telescope/telescope-dap.nvim")
-  use("raghur/vim-ghost")
-  use("nvim-tree/nvim-web-devicons")
 
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
+  use { 'rcarriga/nvim-dap-ui',
+	  requires = {
+          {'mfussenegger/nvim-dap'},
+          {'nvim-neotest/nvim-nio'},
+	  }
+  }
+
+  use { 'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v2.x',
 	  requires = {
 		  -- LSP Support
@@ -85,6 +90,14 @@ return require('packer').startup(function(use)
       "ThePrimeagen/harpoon",
       branch = "harpoon2",
       requires = { {"nvim-lua/plenary.nvim"} }
+  }
+
+  use {
+      "kristijanhusak/vim-dadbod-ui",
+      requires = {
+          { "tpope/vim-dadbod" },
+          { "kristijanhusak/vim-dadbod-completion" },
+      }
   }
 
 end)

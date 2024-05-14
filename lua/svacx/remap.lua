@@ -43,3 +43,7 @@ vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn
 
 vim.keymap.set('n', '<leader>cc', ':Copilot enable<CR>')
 vim.keymap.set('n', '<leader>ccd', ':Copilot disable<CR>')
+
+vim.keymap.set('n', '<leader>w', ':%s/\\s\\+$//e<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>t', ':!pipenv run pytest % -vvv<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>fl', ':!pipenv run flake8 % <CR>', { silent = true, noremap = true })
