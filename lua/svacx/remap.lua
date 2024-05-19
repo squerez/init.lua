@@ -47,5 +47,3 @@ vim.keymap.set('n', '<leader>ccd', ':Copilot disable<CR>')
 vim.keymap.set('n', '<leader>w', ':%s/\\s\\+$//e<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>t', ':!pipenv run pytest % -vvv<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>fl', ':!pipenv run flake8 % <CR>', { silent = true, noremap = true })
-
-vim.keymap.set('n', '<leader>fs', ':Neotree <CR>', { silent = true, noremap = true })
