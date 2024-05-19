@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use("nvim-lua/plenary.nvim")
 
   use {
       'nvim-telescope/telescope.nvim',
@@ -13,8 +14,7 @@ return require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use {
-      'nvim-telescope/telescope-fzf-native.nvim',
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
       run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
   }
 
@@ -28,7 +28,6 @@ return require('packer').startup(function(use)
   })
 
   use('nvim-treesitter/nvim-treesitter', {run=':TSUpdate'})
-  use("nvim-lua/plenary.nvim")
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('tpope/vim-commentary')
@@ -44,6 +43,7 @@ return require('packer').startup(function(use)
   use("mfussenegger/nvim-dap")
   use("mfussenegger/nvim-dap-python")
   use("theHamsta/nvim-dap-virtual-text")
+  use("stevearc/oil.nvim")
 
   use { 'rcarriga/nvim-dap-ui',
 	  requires = {
