@@ -27,6 +27,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.colorcolumn = "80"
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -34,3 +35,6 @@ vim.opt.splitright = true
 -- vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴"
+
+vim.g.python3_host_prog = "/home/svacx/venvs/.nvim-venv/bin/python"
+vim.opt.laststatus = 3
