@@ -12,6 +12,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "nvim-telescope/telescope.nvim",
     },
 
     config = function()
@@ -19,6 +20,33 @@ return {
             formatters_by_ft = {
             }
         })
+
+        -- Use Telescope for definitions and references
+        local telescope_builtin = require("telescope.builtin")
+
+        -- Optional: Force LSP handlers back to native behavior (just in case)
+        vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(
+            vim.lsp.handlers["textDocument/definition"],
+            { reuse_win = false }
+        )
+
+        -- Define the on_attach function
+        local on_attach = function(client, bufnr)
+          local opts = { buffer = bufnr, remap = false }
+
+          vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
+          vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, opts)
+          vim.keymap.set("n", "gr", telescope_builtin.lsp_references, opts)
+          vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+          vim.keymap.set("n", "<leader>vws", telescope_builtin.lsp_workspace_symbols, opts)
+          vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+          vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+          vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+          vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+          vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+          vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        end
+
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -40,22 +68,21 @@ return {
                 "bashls",
             },
             handlers = {
-                function(server_name) -- default handler (optional)
+                function(server_name)
                     require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
+                        capabilities = capabilities,
+                        on_attach = on_attach
                     }
                 end,
 
                 ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
+                    require("lspconfig").lua_ls.setup {
                         capabilities = capabilities,
+                        on_attach = on_attach,
                         settings = {
                             Lua = {
                                 format = {
                                     enable = true,
-                                    -- Put format options here
-                                    -- NOTE: the value should be STRING!!
                                     defaultConfig = {
                                         indent_style = "space",
                                         indent_size = "2",
@@ -65,18 +92,20 @@ return {
                         }
                     }
                 end,
-                ['pylsp'] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.pylsp.setup {
+
+                ["pylsp"] = function()
+                    require("lspconfig").pylsp.setup {
+                        capabilities = capabilities,
+                        on_attach = on_attach,
                         settings = {
-                        pylsp = {
-                            plugins = {
-                            pycodestyle = {
-                                ignore = {'W391'},
-                                maxLineLength = 120
+                            pylsp = {
+                                plugins = {
+                                    pycodestyle = {
+                                        ignore = { "W391" },
+                                        maxLineLength = 120,
+                                    }
+                                }
                             }
-                            }
-                        }
                         }
                     }
                 end,
@@ -88,7 +117,7 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require('luasnip').lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
@@ -100,36 +129,32 @@ return {
             sources = cmp.config.sources({
                 { name = "copilot", group_index = 2 },
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
+                { name = 'luasnip' },
             }, {
                 { name = 'buffer' },
             })
         })
 
         vim.diagnostic.config({
-          -- Signs configuration
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = "",
-              [vim.diagnostic.severity.WARN]  = "",
-              [vim.diagnostic.severity.HINT]  = "",
-              [vim.diagnostic.severity.INFO]  = "",
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = "",
+                    [vim.diagnostic.severity.WARN]  = "",
+                    [vim.diagnostic.severity.HINT]  = "",
+                    [vim.diagnostic.severity.INFO]  = "",
+                },
             },
-          },
-
-          -- Floating window border
-          float = {
-            border = "rounded", -- or "single", "double", "shadow"
-            style = "minimal",
-            source = "always",
-            focusable = false
-          },
-
-          -- Additional diagnostic display options
-          virtual_text = true,
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
+            float = {
+                border = "rounded",
+                style = "minimal",
+                source = "always",
+                focusable = false,
+            },
+            virtual_text = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
         })
     end
 }
+
