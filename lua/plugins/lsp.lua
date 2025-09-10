@@ -34,9 +34,9 @@ return {
         local on_attach = function(client, bufnr)
           local opts = { buffer = bufnr, remap = false }
 
-          vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
-          vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, opts)
-          vim.keymap.set("n", "gr", telescope_builtin.lsp_references, opts)
+          vim.keymap.set("n", "<leader>gd", telescope_builtin.lsp_definitions, opts)
+          vim.keymap.set("n", "<leader>gi", telescope_builtin.lsp_implementations, opts)
+          vim.keymap.set("n", "<leader>gr", telescope_builtin.lsp_references, opts)
           vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
           vim.keymap.set("n", "<leader>vws", telescope_builtin.lsp_workspace_symbols, opts)
           vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
@@ -101,9 +101,9 @@ return {
                             pylsp = {
                                 plugins = {
                                     pycodestyle = {
-                                        ignore = { "W391" },
+                                        ignore = { "W391", "W503", "W504", "E501" },
                                         maxLineLength = 120,
-                                    }
+                                    },
                                 }
                             }
                         }
